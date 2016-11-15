@@ -1,5 +1,4 @@
 package cmsc420.meeshquest.part2;
-
 import java.util.Comparator;
 
 public class roadNamesComparator implements Comparator<Road> {

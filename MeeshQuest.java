@@ -957,7 +957,7 @@ public class MeeshQuest {
 						else {
 							ArrayList<Road> roadList = new ArrayList<Road>();
 							double dist = 0;
-							roadList = r.djikstra(citiesMapped, roadsOriginalMapped, start, end);
+							roadList = r.Djikstra(citiesMapped, roadsOriginalMapped, start, end);
 
 							if (roadList == null){
 								error.setAttribute("type", "noPathExists");

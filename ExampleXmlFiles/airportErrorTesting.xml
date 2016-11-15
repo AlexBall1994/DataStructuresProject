@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<commands xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" g="1" localSpatialHeight="16" localSpatialWidth="16" pmOrder="3" remoteSpatialHeight="16" remoteSpatialWidth="16" xsi:noNamespaceSchemaLocation="part3in.xsd">
+<createCity id="1" color="red" localX="0" localY="0" name="A" radius="0" remoteX="0" remoteY="0"/>
+<createCity id="2" color="red" localX="1" localY="0" name="B" radius="0" remoteX="0" remoteY="0"/>
+<createCity id="3" color="red" localX="4" localY="0" name="C" radius="0" remoteX="0" remoteY="0"/>
+<createCity id="3" color="red" localX="4" localY="4" name="D" radius="0" remoteX="0" remoteY="0"/>
+<mapRoad id="4" end="B" start="A"/>
+<mapRoad id="5" end="P" start="A"/>
+<mapRoad id="6" end="C" start="A"/>
+<mapRoad id="6" end="C" start="D"/>
+
+<printPMQuadtree id="100" remoteX="0" remoteY="0" />
+</commands>

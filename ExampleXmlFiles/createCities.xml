@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<commands xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" g="1" localSpatialHeight="16" localSpatialWidth="16" remoteSpatialHeight="16" remoteSpatialWidth="16" xsi:noNamespaceSchemaLocation="part3in.xsd">
+<createCity id="1" color="red" localX="0" localY="0" name="A" radius="0" remoteX="0" remoteY="0"/>
+<createCity id="2" color="red" localX="1" localY="0" name="B" radius="0" remoteX="0" remoteY="0"/>
+<createCity id="3" color="red" localX="4" localY="0" name="C" radius="0" remoteX="0" remoteY="0"/>
+<createCity id="4" color="red" localX="13" localY="0" name="C" radius="0" remoteX="1" remoteY="0"/>
+<createCity id="5" color="red" localX="4" localY="0" name="F" radius="0" remoteX="1" remoteY="0"/>
+
+</commands>

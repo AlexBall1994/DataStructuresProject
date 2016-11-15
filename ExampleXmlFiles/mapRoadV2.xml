@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<commands xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" g="1" localSpatialHeight="16" localSpatialWidth="16" pmOrder="3" remoteSpatialHeight="16" remoteSpatialWidth="16" xsi:noNamespaceSchemaLocation="part3in.xsd">
+<createCity id="1" color="red" localX="0" localY="0" name="A" radius="0" remoteX="0" remoteY="0"/>
+<createCity id="2" color="red" localX="1" localY="0" name="B" radius="0" remoteX="0" remoteY="0"/>
+<createCity id="3" color="red" localX="4" localY="0" name="C" radius="0" remoteX="0" remoteY="0"/>
+<createCity id="4" color="red" localX="4" localY="0" name="D" radius="0" remoteX="1" remoteY="0"/>
+<createCity id="5" color="red" localX="5" localY="17" name="E" radius="0" remoteX="1" remoteY="0"/>
+<mapRoad id="6" end="B" start="A"/>
+<mapRoad id="7" end="P" start="A"/>
+<mapRoad id="8" end="C" start="A"/>
+<mapRoad id="9" end="C" start="K"/>
+<mapRoad id="10" end="C" start="C"/>
+<mapRoad id="11" end="D" start="A"/>
+<mapRoad id="12" end="E" start="A"/>
+<mapRoad id="13" end="D" start="E"/>
+<mapRoad id="14" end="C" start="A"/>
+
+</commands>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<commands xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" g="1" localSpatialHeight="1024" localSpatialWidth="1024" remoteSpatialHeight="1024" remoteSpatialWidth="1024" xsi:noNamespaceSchemaLocation="part3in.xsd">
+<createCity color="black" id="1" localX="140" localY="37" name="Baltimore" radius="0" remoteX="1" remoteY="0"/>
+<createCity color="black" id="2" localX="133" localY="834" name="Chicago" radius="0" remoteX="1" remoteY="0"/>
+<createCity color="black" id="3" localX="200" localY="300" name="New_York" radius="0" remoteX="1" remoteY="0"/>
+<createCity color="black" id="4" localX="1000" localY="1000" name="Zurich" radius="0" remoteX="0" remoteY="2"/>
+<createCity color="black" id="5" localX="500" localY="400" name="Paris" radius="0" remoteX="0" remoteY="2"/>
+<createCity color="black" id="6" localX="450" localY="450" name="Amsterdam" radius="0" remoteX="0" remoteY="2"/>
+<createCity color="black" id="6" localX="800" localY="750" name="Allie" radius="0" remoteX="0" remoteY="2"/>
+<createCity color="black" id="6" localX="800" localY="700" name="All" radius="0" remoteX="0" remoteY="2"/>
+<createCity color="black" id="6" localX="329" localY="699" name="Al346" radius="0" remoteX="0" remoteY="2"/>
+<createCity color="black" id="6" localX="1000" localY="769" name="A266" radius="0" remoteX="0" remoteY="13"/>
+<createCity color="black" id="6" localX="809" localY="20" name="A234634" radius="0" remoteX="0" remoteY="2"/>
+
+<createCity color="black" id="6" localX="1000" localY="769" name="A266" radius="0" remoteX="0" remoteY="15"/>
+<createCity color="black" id="6" localX="1000" localY="769" name="A266" radius="0" remoteX="0" remoteY="13"/>
+<createCity color="black" id="6" localX="1000" localY="700" name="ABeta" radius="0" remoteX="0" remoteY="16"/>
+<createCity color="black" id="6" localX="1001" localY="701" name="A6" radius="0" remoteX="0" remoteY="16"/>
+<mapRoad end="Chicago" id="7" start="Baltimore"/>
+<mapRoad end="Paris" id="8" start="Zurich"/>
+<mapAirport id="9" localX="190" localY="300" name="Concorde" remoteX="1" remoteY="0" terminalName="T1" terminalX="195" terminalY="290" terminalCity="Baltimore"/>
+<mapAirport id="9" localX="19" localY="19" name="Connie" remoteX="1" remoteY="0" terminalName="TZ" terminalX="40" terminalY="40" terminalCity="Baltimore"/>
+<mapAirport id="9" localX="19" localY="19" name="Conn" remoteX="1" remoteY="0" terminalName="TZ" terminalX="40" terminalY="40" terminalCity="Baltimore"/>
+<mapTerminal id="10" name="Baltimore" localX="200" localY="150" remoteX="1" remoteY="0" cityName="Baltimore" airportName="Concorde"/>
+<mapTerminal id="11" name="Sweg" localX="140" localY="37" remoteX="1" remoteY="0" cityName="Baltimore" airportName="Concorde"/>
+<mapTerminal id="12" name="Sweg" localX="1025" localY="37" remoteX="1" remoteY="0" cityName="Baltimore" airportName="Concorde"/>
+<mapTerminal id="13" name="Sweg" localX="100" localY="37" remoteX="1025" remoteY="0" cityName="Baltimore" airportName="Concorde"/>
+<mapTerminal id="14" name="Sweg" localX="100" localY="37" remoteX="1" remoteY="0" cityName="Baltimore" airportName="Concord"/>
+<mapTerminal id="15" name="Sweg" localX="100" localY="37" remoteX="0" remoteY="0" cityName="Baltimore" airportName="Concorde"/>
+<mapTerminal id="16" name="Sweg" localX="100" localY="37" remoteX="1" remoteY="0" cityName="Baltimo" airportName="Concorde"/>
+<mapTerminal id="17" name="Sweg" localX="100" localY="37" remoteX="1" remoteY="0" cityName="Amsterdam" airportName="Concorde"/>
+<mapTerminal id="18" name="Sweg" localX="100" localY="834" remoteX="1" remoteY="0" cityName="Chicago" airportName="Concorde"/>
+<mapTerminal id="19" name="Swe" localX="90" localY="834" remoteX="1" remoteY="0" cityName="Chicago" airportName="Concorde"/>
+<mapRoad  id="20" end="Amsterdam" start="Paris"/>
+<mapRoad  id="21" end="Amsterdam" start="Allie"/>
+<mapAirport id="22" localX="653" localY="118" name="MeYo" remoteX="0" remoteY="2" terminalName="T1" terminalX="300" terminalY="51" terminalCity="All"/>
+<printPMQuadtree id="100" remoteX="1" remoteY="0" />
+<globalRangeCities id="101" remoteX="1" remoteY="1" radius="100"/>
+<globalRangeCities id="101" remoteX="1" remoteY="1" radius="100"/>
+<nearestCity id="13" remoteX="1" remoteY="0" localX="1" localY="0"/>
+<mapRoad end="A266" id="16" start="Allie"/>
+<mapRoad end="A266" id="19" start="Al346"/>
+<mapRoad end="Al346" id="123" start="A234634"/>
+<mapRoad end="A6" id="123" start="ABeta"/>
+<deleteCity name="Paris" id="14"/>
+<mapRoad end="Chicago" start="T1" id="16"/>
+<createCity color="black" id="6" localX="13" localY="750" name="a13" radius="0" remoteX="0" remoteY="100"/>
+<createCity color="black" id="6" localX="30" localY="700" name="a14" radius="0" remoteX="0" remoteY="100"/>
+<createCity color="black" id="6" localX="45" localY="699" name="a15" radius="0" remoteX="0" remoteY="100"/>
+<createCity color="black" id="6" localX="60" localY="769" name="a16" radius="0" remoteX="0" remoteY="100"/>
+<createCity color="black" id="6" localX="70" localY="20" name="a17" radius="0" remoteX="0" remoteY="100"/>
+<mapRoad end="a13" id="123" start="a17"/>
+<mapRoad end="a14" id="123" start="a17"/>
+<mapRoad end="a17" id="123" start="a13"/>
+<mapRoad end="a16" id="123" start="a13"/>
+<printPMQuadtree id="100" remoteX="1" remoteY="0" />
+
+</commands>

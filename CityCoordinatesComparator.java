@@ -1,5 +1,4 @@
 package cmsc420.meeshquest.part2;
-
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Float;
 import java.util.Comparator;
@@ -21,9 +20,4 @@ public class CityCoordinatesComparator implements Comparator <Point2D.Float> {
 		else return 0;
 		
 	}
-
-
-
-
-
 }

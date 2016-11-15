@@ -4,7 +4,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import java.awt.geom.Line2D.Double;
 import java.util.ArrayList;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -35,7 +34,6 @@ public class PMQuadTree {
 			return "white";
 		}
 
-
 		@Override
 		public Node insert(City c) {
 			// TODO Auto-generated method stub
@@ -54,7 +52,6 @@ public class PMQuadTree {
 		private City c;
 		private ArrayList<Road> roadList = new ArrayList<Road>();
 
-
 		public BlackNode(int x, int y, int width, int height, City c) {
 			super(x, y, width, height);
 			this.c = c;
@@ -66,11 +63,9 @@ public class PMQuadTree {
 				return this;
 			}
 			else {
-
 				GreyNode g = new GreyNode((int)super.getMinX(), (int) super.getMinY(), super.getWidth(), super.getHeight());
 				g.insert(this.c);
 				g.insert(city);
-
 
 				return g;
 			}
@@ -98,15 +93,12 @@ public class PMQuadTree {
 			if (!roadList.contains(r))
 				roadList.add(r);
 		}
-
 	}
 
 	public Node insert(City c){
 		if (this.root == null)
 			root = new WhiteNode(0,0, (int)width,(int) height);
 		return this.root = this.root.insert(c);
-
-
 	}
 
 	private class GreyNode extends Node {
@@ -114,7 +106,6 @@ public class PMQuadTree {
 		Rectangle[] regions = new Rectangle[4];
 		public GreyNode(int x, int y, int width, int height) {
 			super(x, y, width, height);
-
 
 			children[0] = new WhiteNode(x,y+height/2,width/2,height/2);
 			children[1] = new WhiteNode(x,y,width/2,height/2);
@@ -131,14 +122,11 @@ public class PMQuadTree {
 
 			for(int i = 0; i < 4; i++){
 
-
 				if(c.getX() >= children[i].getMinX() && c.getX() <= children[i].getMaxX() && c.getY() >= children[i].getMinY() && c.getY() <= children[i].getMaxY()){
 					children[i] = children[i].insert(c);
 
 				}
-
 			}
-
 			return this;
 		}	
 
@@ -155,7 +143,6 @@ public class PMQuadTree {
 			else {
 				return children[3];
 			}
-
 		}
 
 		public String color(){
@@ -173,7 +160,6 @@ public class PMQuadTree {
 					children[i].insertRoad(r);
 				}
 			}
-
 		}
 	}
 
@@ -220,7 +206,6 @@ public class PMQuadTree {
 				if (b.getCity() == null){
 
 				}
-
 				else if (b.getCity().isIsolated()){
 					Element isolatedCity = results.createElement("isolatedCity");
 					isolatedCity.setAttribute("name", b.getCity().getName());
@@ -241,7 +226,6 @@ public class PMQuadTree {
 					city.setAttribute("radius", Integer.toString((int) b.getCity().getRadius()));
 
 					black.appendChild(city);
-
 				}
 
 				if (!roadList.isEmpty()){
@@ -262,20 +246,15 @@ public class PMQuadTree {
 							
 							Element road = results.createElement("road");
 							Road r = roadList.get(bestI);
-							//if (r.getStart().compareTo(r.getEnd()) < 0){
-								road.setAttribute("start", r.getStart());
-								road.setAttribute("end", r.getEnd());
-							//}
-							//else {
-							//road.setAttribute("start", r.getEnd());
-							//road.setAttribute("end", r.getStart());
-							//}
+
+							road.setAttribute("start", r.getStart());
+							road.setAttribute("end", r.getEnd());
+							
 							black.appendChild(road);
 							temp.remove(bestI);
 							i = 0;
 							bestI = 0;
 							
-
 						}
 					}	
 				}

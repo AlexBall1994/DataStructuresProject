@@ -3,7 +3,6 @@ package cmsc420.meeshquest.part2;
 import java.util.Comparator;
 
 public class cityNamesComparator implements Comparator<String>{
-
 	
 	public int compare(String city1, String city2){
 		
@@ -14,6 +13,4 @@ public class cityNamesComparator implements Comparator<String>{
 		else
 			return -1;
 	}
-
-
 }

@@ -1,7 +1,8 @@
 package cmsc420.meeshquest.part2;
-
 import cmsc420.drawing.CanvasPlus;
 
+
+//This class represents a node in the quadtree
 public class QuadTreeNode {
 	public enum NodeColor {
 		White,Grey,Black
@@ -20,9 +21,6 @@ public class QuadTreeNode {
 	private NodeColor nodeColor = NodeColor.White;
 	
 	CanvasPlus canvas = null;
-	
-	
-
 	
 	public QuadTreeNode(float x, float y,float maxX, float maxY, City c){
 		this.minX = x;

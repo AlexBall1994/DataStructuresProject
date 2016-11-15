@@ -1,9 +1,6 @@
 package cmsc420.meeshquest.part2;
-
 import java.awt.Rectangle;
 import java.awt.geom.Line2D;
-
-
 
 public abstract class Node {
 	private Rectangle dimensions;
@@ -13,12 +10,10 @@ public abstract class Node {
 		
 	}
 	
-	
 	public abstract void insertRoad(Road r);
 	public abstract Node insert(City c);
 	public abstract String color();
-	
-	
+		
 	public double getMinX(){
 		return dimensions.getMinX();
 	}
@@ -42,5 +37,4 @@ public abstract class Node {
 	public int getHeight(){
 		return (int) dimensions.getHeight();
 	}
-
 }

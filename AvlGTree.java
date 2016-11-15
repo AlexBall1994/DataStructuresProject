@@ -7,10 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.Stack;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
 
 public class AvlGTree {
 	private class TreeNode {
@@ -41,7 +39,6 @@ public class AvlGTree {
 		this.size = 0;
 	}
 	
-
 	public boolean isEmpty(){
 		return root == null;
 	}
@@ -58,7 +55,7 @@ public class AvlGTree {
 		}
 		else {
 			Element node = results.createElement("node");
-		
+
 			
 			node.setAttribute("key", t.c.getName());
 			node.setAttribute("value", "("+Integer.toString((int) t.c.getX())+","+Integer.toString((int) t.c.getY())+")");
@@ -111,8 +108,7 @@ public class AvlGTree {
 		}
 
 		// Tree is empty:
-			root = new TreeNode(c);
-
+		root = new TreeNode(c);
 		size++;
 
 		return true;
@@ -170,7 +166,7 @@ public class AvlGTree {
 				}
 
 				current.height = Math.max(height(current.leftChild),
-						height(current.rightChild)) + 1;
+					height(current.rightChild)) + 1;
 
 				if (isInsertion) {
 					break;
@@ -199,14 +195,14 @@ public class AvlGTree {
 				}
 
 				current.height = Math.max(height(current.leftChild),
-						height(current.rightChild)) + 1;
+					height(current.rightChild)) + 1;
 
 				if (isInsertion) {
 					break;
 				}
 			} else {
 				current.height = Math.max(height(current.leftChild),
-						height(current.rightChild)) + 1;
+					height(current.rightChild)) + 1;
 			}
 		}
 	}
@@ -219,7 +215,7 @@ public class AvlGTree {
 		newRoot.rightChild = sRoot;
 
 		sRoot.height = Math.max(height(sRoot.leftChild),
-				height(sRoot.rightChild)) + 1;
+			height(sRoot.rightChild)) + 1;
 		newRoot.height = Math.max(height(newRoot.leftChild), sRoot.height) + 1;
 
 		return newRoot;
@@ -233,7 +229,7 @@ public class AvlGTree {
 		newRoot.leftChild = sRoot;
 
 		sRoot.height = Math.max(height(sRoot.leftChild),
-				height(sRoot.rightChild)) + 1;
+			height(sRoot.rightChild)) + 1;
 		newRoot.height = Math.max(sRoot.height, height(newRoot.rightChild)) + 1;
 
 		return newRoot;
@@ -252,5 +248,4 @@ public class AvlGTree {
 
 		return rotateWithRightChild(sRoot);
 	}
-
 }

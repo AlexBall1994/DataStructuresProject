@@ -11,11 +11,11 @@ import org.w3c.dom.Element;
 import cmsc420.drawing.CanvasPlus;
 import cmsc420.meeshquest.part2.QuadTreeNode.NodeColor;
 
+//Used to build a quadtree
 public class QuadTree {
 
 	private QuadTreeNode root = null;
 	CanvasPlus canvas = null;
-
 
 	public QuadTree(float maxX, float maxY, City c, CanvasPlus canvas){
 		this.root = new QuadTreeNode(0,0,maxX,maxY,c);
@@ -39,9 +39,9 @@ public class QuadTree {
 		else return false;
 	}
 
+
 	public void print(Document results, Element result){
 		ArrayList<QuadTreeNode> prQuadTree = new ArrayList<QuadTreeNode>();
-
 
 		Element success = results.createElement("success");
 		Element printCommand = results.createElement("command");
@@ -58,23 +58,22 @@ public class QuadTree {
 		output.appendChild(quadTree);
 
 		prQuadTree.add(this.root);
-
 		printResults(results, quadTree, this.root);
 	}
 
 	private QuadTreeNode printResults(Document results, Element prev, QuadTreeNode startNode){
 
 		switch(startNode.getNodeColor()){
-		case White: Element white = results.createElement("white");
-		prev.appendChild(white);
-		return null;
-		case Black: Element black = results.createElement("black");
-		black.setAttribute("name", startNode.getCity().getName());
-		black.setAttribute("x", Integer.toString((int) startNode.getCity().getX()));
-		black.setAttribute("y", Integer.toString((int) startNode.getCity().getY()));
-		prev.appendChild(black);
-		return null;
-		default:
+			case White: Element white = results.createElement("white");
+			prev.appendChild(white);
+			return null;
+			case Black: Element black = results.createElement("black");
+			black.setAttribute("name", startNode.getCity().getName());
+			black.setAttribute("x", Integer.toString((int) startNode.getCity().getX()));
+			black.setAttribute("y", Integer.toString((int) startNode.getCity().getY()));
+			prev.appendChild(black);
+			return null;
+			default:
 			Element gray = results.createElement("gray");
 			int x = (int) ((startNode.getMaxX()+startNode.getMinX())/2);
 			int y = (int) ((startNode.getMaxY()+startNode.getMinY())/2);
@@ -139,12 +138,10 @@ public class QuadTree {
 				if (q.getParent() != null)
 					trimTree(q.getParent());		
 			}
-			else {
-
-			}
 		}
 	}
 
+	//Searches and deletes the city from the tree. It then adjusts the tree after deletion
 	private void delete(City c, QuadTreeNode q){
 
 		String name = c.getName();
@@ -192,10 +189,12 @@ public class QuadTree {
 		}
 	}
 
+
 	public void rangeCities(TreeMap<String, City> cityInRangeList, City rangeCity){
 		rangeCities(this.root, cityInRangeList, rangeCity);
 	}
 
+	//finds ands adds cities in range to the TreeMap
 	private void rangeCities(QuadTreeNode node, TreeMap<String, City> cityInRangeList, City rangeCity){
 		Utilities util = new Utilities();
 
@@ -218,6 +217,8 @@ public class QuadTree {
 		}
 	}
 
+
+	//Inserts a City into the quadtree
 	private City insert(City c, QuadTreeNode q){
 
 		if (q.getNodeColor() == NodeColor.White){

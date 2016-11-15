@@ -1,11 +1,11 @@
 package cmsc420.meeshquest.part2;
-
 import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+//Class to represent roads
 public class Road {
 	private final String start;
 	private final String end;
@@ -40,7 +40,7 @@ public class Road {
 	}
 
 	//Dijkstra's by yours truly
-	public ArrayList<Road> FOURTWENTYBlazeDjSoftStuff(ArrayList<String> citiesMapped, ArrayList<Road> roadsMapped, String startCity, String endCity){
+	public ArrayList<Road> Dijkstra(ArrayList<String> citiesMapped, ArrayList<Road> roadsMapped, String startCity, String endCity){
 
 		Hashtable<String,Hashtable<String,Double>> table = new Hashtable<String,Hashtable<String,Double>>();
 		ArrayList<String> unprocessed = new ArrayList<String>();
@@ -51,7 +51,6 @@ public class Road {
 			unprocessed.add(citiesMapped.get(i));
 		}
 
-
 		for(int i = 0; i < citiesMapped.size(); i++){
 			dist.put(citiesMapped.get(i), Double.MAX_VALUE);
 			table.put(citiesMapped.get(i), new Hashtable<String,Double>());
@@ -61,13 +60,12 @@ public class Road {
 
 			}
 		}
-		dist.put(startCity,  0.0);
 
+		dist.put(startCity,  0.0);
 		String current = startCity;
 
 		while(!unprocessed.isEmpty()){
 			unprocessed.remove(current);
-
 
 			for(int i = 0; i < roadsMapped.size(); i++){
 				String end = "";
@@ -109,6 +107,7 @@ public class Road {
 		ArrayList<Road> path = new ArrayList<Road>();
 		String cur = endCity;
 		String next = "";
+
 		if(!prev.containsKey(endCity) && !endCity.equals(startCity)){
 			return null;
 		}
@@ -128,7 +127,5 @@ public class Road {
 		}
 
 		return path;
-
-
 	}
 }

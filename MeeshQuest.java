@@ -1,5 +1,4 @@
 package cmsc420.meeshquest.part2;
-
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Arc2D;
@@ -17,17 +16,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
+import org.xml.sax.SAXException
 import cmsc420.drawing.CanvasPlus;
 import cmsc420.xml.XmlUtility;
 
@@ -53,21 +49,15 @@ public class MeeshQuest {
 			results = XmlUtility.getDocumentBuilder().newDocument();
 			Element result = results.createElement("results");
 			results.appendChild(result);
-
-
 			Element commandNode = doc.getDocumentElement();
 
 			float spatialWidth = Float.parseFloat(commandNode.getAttribute("spatialWidth"));
 			float spatialHeight = Float.parseFloat(commandNode.getAttribute("spatialHeight"));
 			int g = Integer.parseInt(commandNode.getAttribute("g"));
-
 			double width = Double.parseDouble(commandNode.getAttribute("spatialWidth"));
 			double height = Double.parseDouble(commandNode.getAttribute("spatialHeight"));
 			int order = Integer.parseInt(commandNode.getAttribute("pmOrder"));
-
 			PMQuadTree PMQTree = new PMQuadTree(order, width, height);
-
-
 
 			canvas = new CanvasPlus("MeeshQuest", (int) spatialWidth, (int) spatialHeight);
 			canvas.addRectangle(0, 0, spatialWidth, spatialHeight, Color.BLACK, false);
@@ -87,6 +77,7 @@ public class MeeshQuest {
 
 					if (!idV.equals(""))command.setAttribute("id", idV);
 
+					//Generating a city
 					if (commandNode.getNodeName().equals("createCity")) {
 
 						String name = commandNode.getAttribute("name");
@@ -114,7 +105,6 @@ public class MeeshQuest {
 						parameters.appendChild(cityYPos);
 						parameters.appendChild(cityRadius);
 						parameters.appendChild(cityColor);
-
 
 						City city = new City(name, xCord, yCord, color, radi);
 
@@ -162,16 +152,13 @@ public class MeeshQuest {
 								success.appendChild(output);
 							}
 						}
-						// canvas.draw();
 					}
+					//Mapping a city
 					else if (commandNode.getNodeName().equals("mapCity")){
 						String name = commandNode.getAttribute("name");
-
 						Element nameP = results.createElement("name");
-
 						command.setAttribute("name", "mapCity");
 						nameP.setAttribute("value", name);
-
 						parameters.appendChild(nameP);
 
 						if (cityNames.containsKey(name)){
@@ -181,7 +168,6 @@ public class MeeshQuest {
 								citiesMappedToAvl.add(name);
 							}
 							tree.insert(city);
-
 
 							if (allCitiesMapped.contains(name)){
 								error.setAttribute("type", "cityAlreadyMapped");
@@ -228,6 +214,7 @@ public class MeeshQuest {
 						}
 					}
 
+					//Print currrent quadtree of the city
 					else if(commandNode.getNodeName().equals("printPMQuadtree")){
 						if (PMQTree.isEmpty()){
 							error.setAttribute("type", "mapIsEmpty");
@@ -243,19 +230,17 @@ public class MeeshQuest {
 						}
 						//prQTree.print(results, result);
 					}
+
+					//Finding roads in a certain range
 					else if(commandNode.getNodeName().equals("rangeRoads")){
 						double x = Double.parseDouble(commandNode.getAttribute("x"));
 						double y = Double.parseDouble(commandNode.getAttribute("y"));
 						double radius = Double.parseDouble(commandNode.getAttribute("radius"));
 						Point2D.Double p = new Point2D.Double(x, y);
-
 						String saveMap = commandNode.getAttribute("saveMap");
 						TreeMap<Road, Road> roadsInRangeList = new TreeMap<Road, Road>(new roadNamesComparator());
 
-
 						Element roadList = results.createElement("roadList");
-
-
 						Element xE = results.createElement("x");
 						Element yE = results.createElement("y");
 						Element radiusE = results.createElement("radius");
@@ -311,6 +296,8 @@ public class MeeshQuest {
 
 						}			
 					}
+
+					//finding roads in a certain range
 					else if (commandNode.getNodeName().equals("rangeCities")){
 						double x = Double.parseDouble(commandNode.getAttribute("x"));
 						double y = Double.parseDouble(commandNode.getAttribute("y"));
@@ -320,10 +307,7 @@ public class MeeshQuest {
 						String saveMap = commandNode.getAttribute("saveMap");
 						TreeMap<String, City> cityInRangeList = new TreeMap<String, City>(new cityNamesComparator());
 
-
 						Element cityList = results.createElement("cityList");
-
-
 						Element xE = results.createElement("x");
 						Element yE = results.createElement("y");
 						Element radiusE = results.createElement("radius");
@@ -348,7 +332,6 @@ public class MeeshQuest {
 							}				
 						}
 
-
 						if (!saveMap.equals("")){
 							mapName.setAttribute("value", saveMap);
 							parameters.appendChild(mapName);
@@ -356,7 +339,6 @@ public class MeeshQuest {
 							canvas.addCircle(x, y, radius, Color.BLUE, false);
 
 						}
-
 
 						if (cityInRangeList.isEmpty()){
 							result.appendChild(error);
@@ -384,6 +366,8 @@ public class MeeshQuest {
 							output.appendChild(cityList);
 						}
 					}
+
+					//Listing all cities
 					else if (commandNode.getNodeName().equals("listCities")){
 
 						if (coordsAndCities.isEmpty()){
@@ -425,14 +409,11 @@ public class MeeshQuest {
 									String x = Integer.toString(xVal);
 									String y = Integer.toString(yVal);
 
-
 									city.setAttribute("name", name);
 									city.setAttribute("x", x);
 									city.setAttribute("y", y);
 									city.setAttribute("color", color);				
 									city.setAttribute("radius", radius);
-
-
 
 									cityList.appendChild(city);
 								}
@@ -457,15 +438,14 @@ public class MeeshQuest {
 									city.setAttribute("color", color);
 									city.setAttribute("radius", radius);
 
-
 									cityList.appendChild(city);
-
 								}
 							}
 						}
 					}
+					//unmaping city from the quadtree
 					else if (commandNode.getNodeName().equals("unmapCity")){
-						/*String name = commandNode.getAttribute("name");
+						String name = commandNode.getAttribute("name");
 
 						Element nameP = results.createElement("name");
 
@@ -481,7 +461,6 @@ public class MeeshQuest {
 							success.appendChild(output);
 
 							City c = cityNames.get(name);
-
 
 							prQTree.delete(c);
 							citiesMapped.remove(c.getName());
@@ -502,11 +481,12 @@ public class MeeshQuest {
 							error.appendChild(command);
 							error.appendChild(parameters);
 							parameters.appendChild(nameP);
-						}*/
+						}
 					}
 
+					//Deleting city for current cities being tracked
 					else if (commandNode.getNodeName().equals("deleteCity")){
-						/*
+						
 						String name = commandNode.getAttribute("name");
 
 						Element nameP = results.createElement("name");
@@ -521,20 +501,16 @@ public class MeeshQuest {
 
 							deleteError.setAttribute("type", "cityDoesNotExist");
 
-
 							result.appendChild(deleteError);
 							deleteError.appendChild(command);
 							deleteError.appendChild(parameters);
 							parameters.appendChild(nameP);
-
-
 						} 
 						else {
 							City c = cityNames.get(name);
 							Point2D.Float point = new Point2D.Float((float)c.getX(), (float)c.getY());
 							cityNames.remove(c.getName());
 							coordsAndCities.remove(point);
-
 
 							if (citiesMapped.contains(name)){
 								prQTree.delete(c);
@@ -548,17 +524,14 @@ public class MeeshQuest {
 								output.appendChild(cityUnmapped);
 							}
 
-
-
 							result.appendChild(success);
 							success.appendChild(command);
 							success.appendChild(parameters);
 							parameters.appendChild(nameP);
 							success.appendChild(output);
-
-
-						}*/
+						}
 					}
+					//clearing all trees and lists
 					else if (commandNode.getNodeName().equals("clearAll")){
 						prQTree = new QuadTree(spatialWidth, spatialHeight, null, canvas);
 						PMQTree = new PMQuadTree(order, width, height);
@@ -581,9 +554,8 @@ public class MeeshQuest {
 						success.appendChild(parameters);
 						success.appendChild(output);
 					}
-
+					//printing the current AvlTree
 					else if (commandNode.getNodeName().equals("printAvlTree")){
-
 
 						command.setAttribute("name", "printAvlTree");
 
@@ -612,11 +584,12 @@ public class MeeshQuest {
 
 						}
 					}
+
+					//Saving mapping of all cities and roads
 					else if (commandNode.getNodeName().equals("saveMap")){
 
 						Element nameE = results.createElement("name");
 						String name = commandNode.getAttribute("name");
-
 
 						command.setAttribute("name", "saveMap");
 						nameE.setAttribute("value", name);
@@ -627,8 +600,9 @@ public class MeeshQuest {
 						parameters.appendChild(nameE);
 						success.appendChild(output);
 						canvas.save(name);
-
 					}
+
+					//Finding nearest road to given coordinates
 					else if (commandNode.getNodeName().equals("nearestRoad")){
 						command.setAttribute("name", "nearestRoad");
 						String xVal = commandNode.getAttribute("x");
@@ -687,16 +661,13 @@ public class MeeshQuest {
 							success.appendChild(parameters);
 							success.appendChild(output);
 
-
-
 						}
-
 					}
+
+					//mapping road to quadtree
 					else if (commandNode.getNodeName().equals("mapRoad")){
 						String c1 = commandNode.getAttribute("start");
 						String c2 = commandNode.getAttribute("end");
-
-
 
 						Element city1 = results.createElement("start");
 						Element city2 = results.createElement("end");
@@ -709,9 +680,7 @@ public class MeeshQuest {
 						error.appendChild(command);
 						error.appendChild(parameters);
 
-
 						command.setAttribute("name", "mapRoad");
-
 
 						if (!cityNames.containsKey(c1)){
 							error.setAttribute("type", "startPointDoesNotExist");
@@ -731,9 +700,6 @@ public class MeeshQuest {
 						else if (isolatedCitiesMapped.contains(c1) || isolatedCitiesMapped.contains(c2)){
 							error.setAttribute("type", "startOrEndIsIsolated");
 							result.appendChild(error);
-
-
-
 						}
 
 						else {
@@ -750,8 +716,6 @@ public class MeeshQuest {
 							else {
 								r = new Road(c2,c1,l);
 							}
-
-
 
 							if (r.alreadyMapped(roadsMapped, r)){
 								error.setAttribute("type", "roadAlreadyMapped");
@@ -801,6 +765,8 @@ public class MeeshQuest {
 							}
 						}
 					}
+
+					//finding nearest city with no roads
 					else if (commandNode.getNodeName().equals("nearestIsolatedCity")){
 						String xVal = commandNode.getAttribute("x");
 						String yVal = commandNode.getAttribute("y");
@@ -815,7 +781,6 @@ public class MeeshQuest {
 						parameters.appendChild(yE);
 
 						command.setAttribute("name", "nearestIsolatedCity");
-
 
 						if(isolatedCitiesMapped.isEmpty()){
 							error.setAttribute("type", "cityNotFound");
@@ -865,13 +830,15 @@ public class MeeshQuest {
 							output.appendChild(city);
 						}
 					}
+
+					//Finding nearest city to a road
 					else if (commandNode.getNodeName().equals("nearestCityToRoad")){
 						String c1 = commandNode.getAttribute("start");
 						String c2= commandNode.getAttribute("end");
 						City city = cityNames.get(c1);
 						City cityDos = cityNames.get(c2);
 						Line2D.Double l = new Line2D.Double(city.getX(), city.getY(), cityDos.getX(), cityDos.getY());
-						//I don't check the reverse of roads, potential error
+						
 						Road r;
 
 						Element start = results.createElement("start");
@@ -881,7 +848,6 @@ public class MeeshQuest {
 						parameters.appendChild(start);
 						parameters.appendChild(end);
 
-
 						command.setAttribute("name", "nearestCityToRoad");
 
 						if (c1.compareTo(c2) < 0){
@@ -890,7 +856,6 @@ public class MeeshQuest {
 						else {
 							r = new Road(c2,c1,l);
 						}
-
 
 						if(!r.alreadyMapped(roadsMapped, r)){
 							error.setAttribute("type", "roadIsNotMapped");
@@ -939,15 +904,15 @@ public class MeeshQuest {
 							cityE.setAttribute("color", c.getColor());
 							cityE.setAttribute("radius", Integer.toString((int) c.getRadius()));
 
-
 							result.appendChild(success);
 							success.appendChild(command);
 							success.appendChild(parameters);
 							success.appendChild(output);
 							output.appendChild(cityE);
-
 						}
 					}
+
+					//Find shoretst path between start and end
 					else if (commandNode.getNodeName().equals("shortestPath")){
 						Road r = new Road(null,null,null);
 						String start = commandNode.getAttribute("start");
@@ -957,10 +922,8 @@ public class MeeshQuest {
 						Element st = results.createElement("start");
 						Element ed = results.createElement("end");
 
-
 						st.setAttribute("value", start);
 						ed.setAttribute("value", end);
-
 						
 						parameters.appendChild(st);
 						parameters.appendChild(ed);
@@ -992,12 +955,9 @@ public class MeeshQuest {
 							result.appendChild(error);
 						}
 						else {
-
-
-
 							ArrayList<Road> roadList = new ArrayList<Road>();
 							double dist = 0;
-							roadList = r.FOURTWENTYBlazeDjSoftStuff(citiesMapped, roadsOriginalMapped, start, end);
+							roadList = r.djikstra(citiesMapped, roadsOriginalMapped, start, end);
 
 							if (roadList == null){
 								error.setAttribute("type", "noPathExists");
@@ -1008,17 +968,13 @@ public class MeeshQuest {
 							else {
 								Element path = results.createElement("path");
 							
-
 								result.appendChild(success);
 								success.appendChild(command);
 								success.appendChild(parameters);
 								success.appendChild(output);
 							
-
-
 								Point2D p;
 								Point2D p2;
-
 
 								path.setAttribute("hops", Integer.toString(roadList.size()));
 
@@ -1103,7 +1059,6 @@ public class MeeshQuest {
 							error.appendChild(parameters);
 
 							result.appendChild(error);
-
 						}
 						else {
 							Utilities u = new Utilities();
@@ -1144,14 +1099,11 @@ public class MeeshQuest {
 							success.appendChild(parameters);
 							success.appendChild(output);
 							output.appendChild(city);
-
-
 						}
 					}
 					else {
 						Element undefined = results.createElement("undefinedError");
 						result.appendChild(undefined);
-
 					}
 				}
 			}
@@ -1171,18 +1123,16 @@ public class MeeshQuest {
 
 		} finally {
 			try {
-				//	PrintStream out;
-				//	try {
-			//		out = new PrintStream(new FileOutputStream("outputMapRoad.xml"));
-				//	System.setOut(out);
-			//	} catch (FileNotFoundException e) {
-				////TODO Auto-generated catch block
-				//	e.printStackTrace();
-				//	}
+					PrintStream out;
+					try {
+					out = new PrintStream(new FileOutputStream("outputMapRoad.xml"));
+					System.setOut(out);
+				} catch (FileNotFoundException e) {
+				//TODO Auto-generated catch block
+					e.printStackTrace();
+					}
 
 				XmlUtility.print(results);
-
-
 
 			} catch (TransformerException e) {
 				e.printStackTrace();
